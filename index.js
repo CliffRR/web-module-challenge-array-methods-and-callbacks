@@ -8,15 +8,51 @@ Practice accessing data by console.log-ing the following pieces of data note.
 💡 HINT: You may want to filter the data first 😉*/
 
 //(a) Home Team name for 2014 world cup final
+const HomeTeamYear2014 = fifaData.filter((element) => {
+    return element.Year === 2014;
+});
+
+
+const HomeTeamName2014 = HomeTeamYear2014.filter((element) => {
+    return element['Home Team Name'];
+});
+
+const HomeTeamNameFinal2014 = HomeTeamName2014.filter((element) => {
+    return element.Stage === 'Final';
+});
+
 
 //(b) Away Team name for 2014 world cup final
+const AwayTeamYear2014 = fifaData.filter((element) => {
+    return element.Year = 2014;
+});
+
+const AwayTeamName2014 = AwayTeamYear2014.filter((element) => {
+    return element['Away Team Name'];
+});
+
+const AwayTeamNameFinal2014 = AwayTeamName2014.filter((element) => {
+    return element.Stage = 'Final';
+});
+
 
 //(c) Home Team goals for 2014 world cup final
-
+const HomeTeamGoals = HomeTeamNameFinal2014.filter((element) => {
+    return element["Home Team Goals"];
+});
 //(d) Away Team goals for 2014 world cup final
+const AwayTeamGoals = AwayTeamNameFinal2014.filter((element) => {
+    return element["Home Team Goals"];
+});
 
 //(e) Winner of 2014 world cup final */
+const Winner2014 = HomeTeamName2014.filter((element) => {
+    if(element["Win conditions"] !== ""){
+        return element
+    }
+});
 
+//console.log(Winner2014)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
@@ -26,11 +62,17 @@ Use getFinals to do the following:
 💡 HINT - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-    /* code here */
+function getFinals(ArrayFifa) {
+    let FinalsOnly = ArrayFifa.filter((element) => {
+        if(element["Stage"] === 'Final'){
+            return element
+        }
+    });
+    return FinalsOnly.length;
  }
 
-
+//console.log(getFinals(fifaData))
+//console.log(fifaData.length)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -38,7 +80,7 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function as the second parameter that will take getFinals from task 2 as an argument
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
+function getYears() {
     /* code here */
 }
 
