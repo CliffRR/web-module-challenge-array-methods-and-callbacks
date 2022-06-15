@@ -24,7 +24,7 @@ const HomeTeamNameFinal2014 = HomeTeamName2014.filter((element) => {
 
 //(b) Away Team name for 2014 world cup final
 const AwayTeamYear2014 = fifaData.filter((element) => {
-    return element.Year = 2014;
+    return element.Year === 2014;
 });
 
 const AwayTeamName2014 = AwayTeamYear2014.filter((element) => {
@@ -63,16 +63,16 @@ Use getFinals to do the following:
 */
 
 function getFinals(ArrayFifa) {
-    let FinalsOnly = ArrayFifa.filter((element) => {
-        if(element["Stage"] === 'Final'){
-            return element
-        }
+    const FinalsOnly = ArrayFifa.filter((element) => {
+       return element['Stage'] === 'Final';
     });
-    return FinalsOnly.length;
+    console.log('ArrayFifa: ', ArrayFifa.length)
+    console.log('FinalsOnly: ', FinalsOnly.length)
+    return FinalsOnly;
  }
 
-//console.log(getFinals(fifaData))
-//console.log(fifaData.length)
+console.log('filter version', getFinals(fifaData).length)
+console.log(fifaData.length)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -80,10 +80,13 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function as the second parameter that will take getFinals from task 2 as an argument
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears() {
-    /* code here */
+function getYears(ArrayFifa,getFinalsFunction) {
+    const years = getFinalsFunction(ArrayFifa).map((element) => {
+        return element.Year
+    });
+    return years
 }
-
+(getYears(fifaData,getFinals))
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -94,10 +97,27 @@ Use the higher-order function getWinners to do the following:
 💡 HINT: Don't worry about ties for now (Please see the README file for info on ties for a stretch goal.)
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
-}
+function getWinners(ArrayFifa, getFinalsFunction) {
+ /*   //Creates an array with all the data that contains words in the Win condition key.
+    const filterwinners = getFinalsFunction(ArrayFifa).filter((element) => {
+        return element["Win conditions"] !== ""
+    });
+    
+    const NewElement = [];
 
+    //Creating an array called NewElement that has the Win Condition sentence for each data point. 
+    //Using an if statement that checks through NewElement[1] to see if it has the word 'win' in it and than returning that data to tilterwinnersTwo
+    const filterwinnersTwo = filterwinners.filter((element, index) => {
+        NewElement[index] = element[index]["Win conditions"].split(" ");
+        if(NewElement[index][1] === 'win' ){
+            return element[index];
+        }
+        
+    });
+  return(filterwinnersTwo);
+   */ 
+}
+//console.log(getWinners(fifaData, getFinals));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
